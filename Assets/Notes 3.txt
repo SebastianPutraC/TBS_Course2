@@ -3,3 +3,12 @@
 - GridPosition is a struct that represents a position in the grid, it has two properties: x and y. It is used to define the position of objects in the grid.
 This also saves memory
 - Override ToString method on GridPosition to make it easier to debug and log the position of objects in the grid.
+
+3.4 : 
+- Grid Object to store what is in each grid position. Also not a monobehaviour
+- Make a GridDebugObject prefab that can be instantiated to visualize the grid in the scene. 
+Use TMPro and rotate it to face upward, no wrapping
+
+3.5 : 
+- On the GridSystem class, CreateDebugObjects will create another grid positions based on the array width and height
+This is a duplication but is needed for debugging purposes. It will create a GridDebugObject for each position in the grid.
