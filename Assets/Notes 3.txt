@@ -1,0 +1,36 @@
+3.3 : 
+- The GridSystem is using a default C# class which that there's no monobehaviour attached to it. Learn to use the constructor
+- GridPosition is a struct that represents a position in the grid, it has two properties: x and y. It is used to define the position of objects in the grid.
+This also saves memory
+- Override ToString method on GridPosition to make it easier to debug and log the position of objects in the grid.
+
+3.4 : 
+- Grid Object to store what is in each grid position. Also not a monobehaviour
+- Make a GridDebugObject prefab that can be instantiated to visualize the grid in the scene. 
+Use TMPro and rotate it to face upward, no wrapping
+
+3.5 : 
+- On the GridSystem class, CreateDebugObjects will create another grid positions based on the array width and height
+This is a duplication but is needed for debugging purposes. It will create a GridDebugObject for each position in the grid.
+
+3.6 :
+- Comment the testing code
+- GridObject can now store Units, which are the objects that will be placed in the grid.
+- LevelGrid class will be created to manage the grid and the units in it. Because of this its a singleton
+- GridPosition has customized equality operators to make it easier to compare positions in the grid.
+- GridPosition also inherits from IEquatable<GridPosition> to 
+fix the warning about implementing equality operators without implementing IEquatable<T>.
+The inherited equals and hash method wont be used anyway
+- GridObject now store list of units instead of a single unit, this is because there's potential of multiple units
+in the same grid position when moving around.
+
+3.7 : 
+- Import Cinemachine package to the project
+- Follow the comments from the gamedevtv site to match the old version of cinemachine
+
+3.8 :
+- Use the new basic input keyboard system.
+
+3.9 :
+- Just follow the comments from gamedevtv site and update the old input system to the new basic one
+- Learn the zoom in and out by transalating from the mouse scroll.
