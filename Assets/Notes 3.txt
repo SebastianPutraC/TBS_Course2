@@ -23,3 +23,14 @@ fix the warning about implementing equality operators without implementing IEqua
 The inherited equals and hash method wont be used anyway
 - GridObject now store list of units instead of a single unit, this is because there's potential of multiple units
 in the same grid position when moving around.
+
+3.7 : 
+- Import Cinemachine package to the project
+- Follow the comments from the gamedevtv site to match the old version of cinemachine
+
+3.8 :
+- Use the new basic input keyboard system.
+
+3.9 :
+- Just follow the comments from gamedevtv site and update the old input system to the new basic one
+- Learn the zoom in and out by transalating from the mouse scroll.
