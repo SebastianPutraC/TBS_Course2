@@ -1,0 +1,5 @@
+3.3 : 
+- The GridSystem is using a default C# class which that there's no monobehaviour attached to it. Learn to use the constructor
+- GridPosition is a struct that represents a position in the grid, it has two properties: x and y. It is used to define the position of objects in the grid.
+This also saves memory
+- Override ToString method on GridPosition to make it easier to debug and log the position of objects in the grid.
