@@ -1,0 +1,5 @@
+4.2 : 
+- Refactor by moving the unit's move functions and variable to MoveAction
+- Add another custom + operator for the Grid Position
+4.3 :
+- A lot of new information, relearn this 

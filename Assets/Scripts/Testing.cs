@@ -2,10 +2,6 @@ using UnityEngine;
 
 public class Testing : MonoBehaviour
 {
-
-
-
-
     //Testing code for grid system
     /*[SerializeField] private Transform gridDebugObjectPrefab;
     private GridSystem gridSystem;
@@ -19,4 +15,6 @@ public class Testing : MonoBehaviour
     {
         Debug.Log(gridSystem.GetGridPosition(MouseWorld.GetPosition()));
     }*/
+
+
 }
