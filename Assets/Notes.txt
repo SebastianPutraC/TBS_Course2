@@ -1,0 +1,31 @@
+2.3 :
+- Make a new layer for the ground, the raycast will target this instead of any other objects
+
+2.8 :
+- Mixamo download setting, format for unity, pose no character, keyframe reduction none.
+- Set the Rig -> animation type to humanoid in Unity.
+- For each animation, set no loop time and Root transform rotation to be original.
+Change the animation name as well
+
+2.9 : 
+- Dont forget to create animation controller 
+- Adjust the gun position
+- Set no exit time so that the animation wont move to another without trigger
+- The animation is set to READONLY at the start, if there's wrongly positioned aspect,
+copy the animation and fix the aspect on the new duplicated one. (Record and change the rotation)
+
+2.11 :
+- Vector3.Lerp(Transform.forward, moveDirection, Time.deltaTime * speed) means that forward of the object will
+rotate to the moveDirection set by the mouse input
+
+2.12 : 
+- Add box collider to Unit prefab with trigger on so it won't collide with other collider. This is used for selecting this unit
+- Add another layer for the units
+- Script Execution Order on Project Settings, set the UnitActionSystem to run just before DefaultTime(Other custom scripts)
+
+2.13 : 
+- Download the circle and make a new material to apply it on the base map. The imported circle will be moved to Textures
+Set surface type to transparent and give it a color
+
+2.14 : 
+- Singleton pattern for the UnitActionSystem
