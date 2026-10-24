@@ -16,9 +16,9 @@ public class Unit : MonoBehaviour
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
         }
-        if (Keyboard.current.tKey.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Move(new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f)));
+            Move(MouseWorld.GetPosition());
         }
     }
 
