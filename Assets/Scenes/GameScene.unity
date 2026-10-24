@@ -553,6 +553,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f90b32e70ec6d9a4da155f9c9a0bb0e3, type: 3}
+--- !u!1 &652028580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 652028581}
+  - component: {fileID: 652028582}
+  m_Layer: 0
+  m_Name: LevelGrid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &652028581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652028580}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &652028582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652028580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec906f620fd1acc4bbd0ac06dcf5aacc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelGrid
+  gridDebugObjectPrefab: {fileID: 578220867484872599, guid: 4a9075ca5d364a243a5302bbca421b42, type: 3}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,7 +676,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a3a7c6553e684b43aa086af8e13bccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Testing
-  gridDebugObjectPrefab: {fileID: 578220867484872599, guid: 4a9075ca5d364a243a5302bbca421b42, type: 3}
 --- !u!4 &909309881
 Transform:
   m_ObjectHideFlags: 0
@@ -903,3 +947,4 @@ SceneRoots:
   - {fileID: 618629446}
   - {fileID: 1348392894}
   - {fileID: 909309881}
+  - {fileID: 652028581}

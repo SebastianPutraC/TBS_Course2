@@ -3,15 +3,23 @@ using UnityEngine.InputSystem;
 
 public class Unit : MonoBehaviour
 {
-    private Vector3 targetPosition;
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float rotateSpeed = 10f;
     [SerializeField] private Animator unitAnimator;
+
+    private Vector3 targetPosition;
+    private GridPosition gridPosition;
 
     private void Awake()
     {
         //Set unit's starting target as its starting position to stop it from moving to 0,0,0
         targetPosition = transform.position;
+    }
+    private void Start()
+    {
+        //Check itself of its starting position and set itself in the LevelGrid
+        gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
+        LevelGrid.Instance.AddUnitAtGridPosition(gridPosition, this);
     }
 
     void Update()
@@ -33,6 +41,12 @@ public class Unit : MonoBehaviour
             unitAnimator.SetBool("IsWalking", false);
         }
 
+        GridPosition newGridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
+        if (newGridPosition != gridPosition)
+        {
+            LevelGrid.Instance.UnitMovedGridPosition(this, gridPosition, newGridPosition);
+            gridPosition = newGridPosition;
+        }
     }
 
     public void Move(Vector3 newPosition)
