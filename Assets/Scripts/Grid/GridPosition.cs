@@ -1,5 +1,6 @@
 using System;
 
+//IEquatable is inherited because we added a custom operator function
 public struct GridPosition : IEquatable<GridPosition>
 {
     public int x;

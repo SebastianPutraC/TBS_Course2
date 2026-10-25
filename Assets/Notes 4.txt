@@ -3,3 +3,13 @@
 - Add another custom + operator for the Grid Position
 4.3 :
 - A lot of new information, relearn this 
+- Level Grid is the Singleton that creates the grid system. Because of this, any information about 
+the grid (positions, objects on the grid, validability) will be called here as the middleman
+- Grid System act as the database for each information, this is where all the get functions from the Level Grid
+is called.
+- Grid Object stores the information of a singular grid. This includes whats in the grid such as units
+- Grid Position is the alternative for Vector2 since it used x and z axis. It store positions of each grid without knowing whats in it
+
+4.4 :
+- GridSystemVisual is used to visualize which tiles each unit can move to. This use a quad 3d sprite for the visual. 
+- GridSystemVisualSingle is the singular visual grid 
