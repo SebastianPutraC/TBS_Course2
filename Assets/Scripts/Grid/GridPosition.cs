@@ -1,5 +1,6 @@
 using System;
 
+//IEquatable is inherited because we added a custom operator function
 public struct GridPosition : IEquatable<GridPosition>
 {
     public int x;
@@ -42,6 +43,15 @@ public struct GridPosition : IEquatable<GridPosition>
     {
         //using already customized == operator to check for inequality
         return !(a == b);
+    }
+
+    public static GridPosition operator +(GridPosition a, GridPosition b)
+    {
+        return new GridPosition(a.x + b.x, a.z + b.z);
+    }
+    public static GridPosition operator -(GridPosition a, GridPosition b)
+    {
+        return new GridPosition(a.x - b.x, a.z - b.z);
     }
 
 }

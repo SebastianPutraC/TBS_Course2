@@ -138,6 +138,8 @@ GameObject:
   - component: {fileID: 4718876378817122644}
   - component: {fileID: 2372698540846852554}
   - component: {fileID: 5333140569028883698}
+  - component: {fileID: 3593022903762563470}
+  - component: {fileID: 4840715752610996265}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -174,9 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ff3a82f4a3e554f8c0a91dc85e5a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Unit
-  moveSpeed: 4
-  rotateSpeed: 10
-  unitAnimator: {fileID: 6046077312295320953}
 --- !u!65 &5333140569028883698
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -198,6 +197,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 1.5, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &3593022903762563470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5764248162616664518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fe50eefe0030f04987de4e7f63298f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveAction
+  unitAnimator: {fileID: 6046077312295320953}
+  maxMoveDistance: 3
+  moveSpeed: 4
+  rotateSpeed: 10
+--- !u!114 &4840715752610996265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5764248162616664518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7422c0aaa91f1f4bbe67bde33e980cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpinAction
 --- !u!1001 &3480755445758371096
 PrefabInstance:
   m_ObjectHideFlags: 0

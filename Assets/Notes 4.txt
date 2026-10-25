@@ -1,0 +1,38 @@
+4.2 : 
+- Refactor by moving the unit's move functions and variable to MoveAction
+- Add another custom + operator for the Grid Position
+4.3 :
+- A lot of new information, relearn this 
+- Level Grid is the Singleton that creates the grid system. Because of this, any information about 
+the grid (positions, objects on the grid, validability) will be called here as the middleman
+- Grid System act as the database for each information, this is where all the get functions from the Level Grid
+is called.
+- Grid Object stores the information of a singular grid. This includes whats in the grid such as units
+- Grid Position is the alternative for Vector2 since it used x and z axis. It store positions of each grid without knowing whats in it
+
+4.4 :
+- GridSystemVisual is used to visualize which tiles each unit can move to. This use a quad 3d sprite for the visual. 
+- GridSystemVisualSingle is the singular visual grid 
+4.5 :
+- Move Action and Spin Action inherit Base Action and has its own folder
+- Check on why lecturer move the move scripts to another lines.
+4.6:
+- Learning about events such as delegate and action to signal UnitActionSystem about when does a single unit finishes
+their movement. This is to prevent multiple action form multiple units going together (only one unit doing one thing).
+4.9: 
+- Learn About Anonymous function that are being used on the action button
+4.10 :
+- Learn about Generics. Refactor the action for both move and spin to inherit a base "TakeAction" function
+instead of individual different named function
+- Base Action now check the validity of the action (within valid tiles). And also can get which tiles is valid for 
+each action
+4.11 : 
+- New texture for the selected grid.Use Pixel per unit modifier to adjust size of the border
+- Set that each buttons is selected by checking on the UnitActionSystem on which action is now ready.
+4.12 :
+- Event Handler can accept multiple parameters like bool. example "event EventHandler<bool> OnBusyChanged;"
+This is used to signal to the UI that a unit is busy doing an action
+4.14 :
+- Turn System can be used as a singleton
+- Learn about static events compared to regular events. The event that were added on the unit is to check
+everytime the unit spend a point or ending their turn, this is to make sure that the UI show the right number of points left
