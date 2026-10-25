@@ -29,6 +29,10 @@ each action
 4.11 : 
 - New texture for the selected grid.Use Pixel per unit modifier to adjust size of the border
 - Set that each buttons is selected by checking on the UnitActionSystem on which action is now ready.
-4.12
+4.12 :
 - Event Handler can accept multiple parameters like bool. example "event EventHandler<bool> OnBusyChanged;"
 This is used to signal to the UI that a unit is busy doing an action
+4.14 :
+- Turn System can be used as a singleton
+- Learn about static events compared to regular events. The event that were added on the unit is to check
+everytime the unit spend a point or ending their turn, this is to make sure that the UI show the right number of points left
