@@ -27,5 +27,8 @@ instead of individual different named function
 - Base Action now check the validity of the action (within valid tiles). And also can get which tiles is valid for 
 each action
 4.11 : 
-- New texture for the selected grid
-- 
+- New texture for the selected grid.Use Pixel per unit modifier to adjust size of the border
+- Set that each buttons is selected by checking on the UnitActionSystem on which action is now ready.
+4.12
+- Event Handler can accept multiple parameters like bool. example "event EventHandler<bool> OnBusyChanged;"
+This is used to signal to the UI that a unit is busy doing an action
