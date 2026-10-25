@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveAction
   unitAnimator: {fileID: 6046077312295320953}
-  maxMoveDistance: 4
+  maxMoveDistance: 3
   moveSpeed: 4
   rotateSpeed: 10
 --- !u!114 &4840715752610996265

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class SpinAction : BaseAction
 {
@@ -24,11 +25,25 @@ public class SpinAction : BaseAction
         }
     }
 
-    public void Spin(Action onSpinComplete)
+    public override void TakeAction(GridPosition gridPosition, Action onSpinComplete)
     {
         //Set delegate parameter to onActionComplete that store ClearBusy function form UnitActionSystem
         this.onActionComplete = onSpinComplete;
         totalSpinAmount = 0f;
         isActive = true;
+    }
+
+    public override List<GridPosition> GetValidActionGridPositionList()
+    {
+        //Only valid action is on the same tile as the unit
+        GridPosition unitGridPosition = unit.GetGridPosition();
+
+        return new List<GridPosition>
+        { unitGridPosition};
+    }
+
+    public override string GetActionName()
+    {
+        return "Spin";
     }
 }

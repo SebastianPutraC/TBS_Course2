@@ -19,3 +19,13 @@ is called.
 4.6:
 - Learning about events such as delegate and action to signal UnitActionSystem about when does a single unit finishes
 their movement. This is to prevent multiple action form multiple units going together (only one unit doing one thing).
+4.9: 
+- Learn About Anonymous function that are being used on the action button
+4.10 :
+- Learn about Generics. Refactor the action for both move and spin to inherit a base "TakeAction" function
+instead of individual different named function
+- Base Action now check the validity of the action (within valid tiles). And also can get which tiles is valid for 
+each action
+4.11 : 
+- New texture for the selected grid
+- 
