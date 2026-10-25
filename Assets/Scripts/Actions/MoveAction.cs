@@ -1,9 +1,10 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class MoveAction : MonoBehaviour
+public class MoveAction : BaseAction
 {
     private Vector3 targetPosition;
     [SerializeField] private Animator unitAnimator;
@@ -11,39 +12,48 @@ public class MoveAction : MonoBehaviour
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float rotateSpeed = 10f;
 
-    private Unit unit;
-
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         //Set unit's starting target as its starting position to stop it from moving to 0,0,0
         targetPosition = transform.position;
-
-        unit = GetComponent<Unit>();
     }
 
     private void Update()
     {
+        if (!isActive)
+        {
+            return;
+        }
+        // Why move this?
+        Vector3 moveDirection = (targetPosition - transform.position).normalized;
         float stoppingDistance = 0.1f;
 
         //Stops the unit from moving if it is within the stopping distance of the target position
         if (Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
-            Vector3 moveDirection = (targetPosition - transform.position).normalized;
+            //From Here?
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
-            // Rotate the unit to face the movement direction
-            transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
             unitAnimator.SetBool("IsWalking", true);
         }
         else
         {
             unitAnimator.SetBool("IsWalking", false);
+            isActive = false;
+            onActionComplete();
         }
+        // Why move this?
+        // Rotate the unit to face the movement direction
+        transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
     }
 
-    public void Move(GridPosition gridPosition)
+    public void Move(GridPosition gridPosition, Action onActionComplete)
     {
+        this.onActionComplete = onActionComplete;
         targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
+        isActive = true;
     }
 
     public bool IsValidActionGridPosition(GridPosition gridPosition)

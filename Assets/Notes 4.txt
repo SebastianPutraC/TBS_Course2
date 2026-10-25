@@ -13,3 +13,9 @@ is called.
 4.4 :
 - GridSystemVisual is used to visualize which tiles each unit can move to. This use a quad 3d sprite for the visual. 
 - GridSystemVisualSingle is the singular visual grid 
+4.5 :
+- Move Action and Spin Action inherit Base Action and has its own folder
+- Check on why lecturer move the move scripts to another lines.
+4.6:
+- Learning about events such as delegate and action to signal UnitActionSystem about when does a single unit finishes
+their movement. This is to prevent multiple action form multiple units going together (only one unit doing one thing).

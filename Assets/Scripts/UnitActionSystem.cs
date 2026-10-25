@@ -12,6 +12,8 @@ public class UnitActionSystem : MonoBehaviour
     [SerializeField] private Unit selectedUnit;
     [SerializeField] private LayerMask unitLayerMask;
 
+    private bool isBusy;
+
     private void Awake()
     {
         //Singleton pattern to ensure only one instance of UnitActionSystem exists
@@ -26,6 +28,11 @@ public class UnitActionSystem : MonoBehaviour
 
     private void Update()
     {
+        //Make sure only one action is running
+        if (isBusy)
+        {
+            return;
+        }
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             //Kinda a weird code, maybe refactored on the next lectures
@@ -33,12 +40,32 @@ public class UnitActionSystem : MonoBehaviour
             {
                 return;
             }
+
+            //Move Action
             GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
             if (selectedUnit.GetMoveAction().IsValidActionGridPosition(mouseGridPosition))
             {
-                selectedUnit.GetMoveAction().Move(mouseGridPosition);
+                SetBusy();
+                selectedUnit.GetMoveAction().Move(mouseGridPosition, ClearBusy);
             }
         }
+        //Spin Action
+        if (Mouse.current.rightButton.wasPressedThisFrame)
+        {
+            SetBusy();
+            //Delegate ClearBusy when the spins starts. Later on on the MoveActions script, it will call the ClearBusy
+            //Can even run on private function
+            selectedUnit.GetSpinAction().Spin(ClearBusy);
+        }
+    }
+
+    private void SetBusy()
+    {
+        isBusy = true;
+    }
+    private void ClearBusy()
+    {
+        isBusy = false;
     }
 
     private bool TryHandleUnitSelection()
