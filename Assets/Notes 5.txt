@@ -1,3 +1,10 @@
 5.2 :
 - The new enemy unit is using a prefab variant
 - Check on the Unit event when the turn is over, thats where each side regain their action points
+5.3
+- Shoot Action work similarly to move action, just need to find which grid in range to fire. There's some copying 
+code for checking the greed from the move action
+- Might recheck on how the circular shooting range compared to square for the radius of shooting action range
+- Check on how the state work on shoot action
+- fixed the onActionComplete for spinAction by renaming the parameter from onSpinComplete to onActionComplete like the 
+rest of the other function

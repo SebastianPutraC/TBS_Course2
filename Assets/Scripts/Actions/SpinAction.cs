@@ -19,18 +19,21 @@ public class SpinAction : BaseAction
         totalSpinAmount += spinAddAmount;
         if (totalSpinAmount >= 360f)
         {
-            isActive = false;
             //Fire delegate function once the spin is finished
-            onActionComplete();
+            //onActionComplete();
+
+            ActionComplete();
         }
     }
 
-    public override void TakeAction(GridPosition gridPosition, Action onSpinComplete)
+    public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
         //Set delegate parameter to onActionComplete that store ClearBusy function form UnitActionSystem
-        this.onActionComplete = onSpinComplete;
+        //this.onActionComplete = onSpinComplete;
+
+        ActionStart(onActionComplete);
+
         totalSpinAmount = 0f;
-        isActive = true;
     }
 
     public override List<GridPosition> GetValidActionGridPositionList()
