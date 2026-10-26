@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 3593022903762563470}
   - component: {fileID: 4840715752610996265}
   - component: {fileID: -3990138985068921926}
+  - component: {fileID: 8064362146971833011}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -239,6 +240,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5f83d2211e70f409f6db32cbe1c75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootAction
+--- !u!114 &8064362146971833011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5764248162616664518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e7cb06a27363e42a7224c29afd6fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitAnimator
+  animator: {fileID: 6046077312295320953}
 --- !u!1001 &3480755445758371096
 PrefabInstance:
   m_ObjectHideFlags: 0
