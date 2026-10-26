@@ -6,6 +6,8 @@ public class Unit : MonoBehaviour
 {
     private const int ACTION_POINTS_MAX = 2; //Default max point 
 
+    [SerializeField] private bool isEnemy;
+
     //Static Events gets fired if any of this class does something
     public static event EventHandler OnAnyActionPointsChanged;
 
@@ -95,9 +97,18 @@ public class Unit : MonoBehaviour
 
     private void Instance_OnTurnChanged(object sender, System.EventArgs e)
     {
-        actionPoints = ACTION_POINTS_MAX;
+        
+        if (IsEnemy() && !TurnSystem.Instance.IsPlayerTurn() //ENEMIES TURN
+            || !IsEnemy() && TurnSystem.Instance.IsPlayerTurn()) // PLAYER TURN
+        {
+            actionPoints = ACTION_POINTS_MAX;
 
-        OnAnyActionPointsChanged?.Invoke(this, EventArgs.Empty);
+            OnAnyActionPointsChanged?.Invoke(this, EventArgs.Empty);
+        }
     }
 
+    public bool IsEnemy()
+    {
+        return isEnemy;
+    }
 }

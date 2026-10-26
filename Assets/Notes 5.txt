@@ -1,0 +1,3 @@
+5.2 :
+- The new enemy unit is using a prefab variant
+- Check on the Unit event when the turn is over, thats where each side regain their action points

@@ -43,6 +43,11 @@ public class UnitActionSystem : MonoBehaviour
         {
             return;
         }
+        // Can't do anything on enemies turn
+        if (!TurnSystem.Instance.IsPlayerTurn())
+        {
+            return;
+        }
         //If the mouse is on top of a button, don't run the action
         if (EventSystem.current.IsPointerOverGameObject())
         {
@@ -120,6 +125,11 @@ public class UnitActionSystem : MonoBehaviour
                 {
                     //Same Unit Selected, don't select the same unit and just ignore it
                     if (unit == selectedUnit)
+                    {
+                        return false;
+                    }
+
+                    if (unit.IsEnemy())
                     {
                         return false;
                     }
