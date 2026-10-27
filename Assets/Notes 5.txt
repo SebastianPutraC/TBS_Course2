@@ -27,3 +27,7 @@ then put the body part as the ragdoll menu required
 - Make a script to match the ragdoll bones with the original unit bones.
 - Learn about the explosion force for each child of the ragdoll rigidbody and how the recursive function 
 handle those
+5.8 :
+- Make a script so that the world UI always facing the camera
+- You can use built in unity sprite (instead of none) so that your image has more features to edit
+Most notably the image type where you can fill in the health bar based on how much health you have
