@@ -10,3 +10,11 @@ code for checking the greed from the move action
 rest of the other function
 5.4 :
 - Added unitAnimator class that get events from each action on when to start the animation
+- Maybe relearn animation stuff with the exit time and transition time
+5.5 :
+- Bullet use Trail Renderer. It should be destroyed from the inspector instead of the code on BulletProjectile
+- You will also need a particle vfx when the bullet hit the target, make sure its also destroyed from the inspector
+- Make a new class on shootaction that inherit EventArgs for custom EventHandler parameter when shooting
+The event will carry data from ShootAction to UnitAnimator regarding the position of the target
+- Check on BulletProjectile for deleting the fast moving object. Check the distance object fired
+and check if the distance is overshooting from the previous distance after firing
