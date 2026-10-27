@@ -18,3 +18,12 @@ rest of the other function
 The event will carry data from ShootAction to UnitAnimator regarding the position of the target
 - Check on BulletProjectile for deleting the fast moving object. Check the distance object fired
 and check if the distance is overshooting from the previous distance after firing
+5.6 :
+- Health system when a unit dies, invoke an event so each unique unit can handle it differently
+5.7 :
+- There is a ragdoll gameobject on 3d object. Assign the duplicated Unit without any script or animator,
+then put the body part as the ragdoll menu required
+- Disable object that is not part of the body first (like weapon), then reenable it when the ragdoll is created
+- Make a script to match the ragdoll bones with the original unit bones.
+- Learn about the explosion force for each child of the ragdoll rigidbody and how the recursive function 
+handle those
