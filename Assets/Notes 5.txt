@@ -35,3 +35,10 @@ Most notably the image type where you can fill in the health bar based on how mu
 - Make another event for camera on BaseAction so that the camera know when each action start and finished
 - Change the transition speed on the cinemachineBrain on your main camera
 - Read the comments on the camera manager about explaining how the action camera works
+5.10 :
+- Change how the gridvisual work, rather than through Update, the visual will update itself based on
+when selecting a new action and after unit is moving
+- Serializable for struct so it can be edited in the inspector
+- Change the grid color by checking on how the grid is visualize (using enum and struct). 
+Every different action has different grid color
+- Check on how the grid is visualizing the range of the shoot action

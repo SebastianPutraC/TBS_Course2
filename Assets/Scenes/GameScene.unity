@@ -2385,6 +2385,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridSystemVisual
   gridSystemVisualSinglePrefab: {fileID: 3480182250317450329, guid: 3d487f9436dd2f84e857e383e503f65a, type: 3}
+  gridVisualTypeMaterialList:
+  - gridVisualType: 0
+    material: {fileID: 2100000, guid: 1c596724ea21d914699e14c4f51e8cd2, type: 2}
+  - gridVisualType: 1
+    material: {fileID: 2100000, guid: ecca0057f2776794dac7ba94cf4f4e33, type: 2}
+  - gridVisualType: 2
+    material: {fileID: 2100000, guid: b47ca6b5bb5e1384e89022d489c05012, type: 2}
+  - gridVisualType: 4
+    material: {fileID: 2100000, guid: f273795d24de01445b24b56824b6add8, type: 2}
+  - gridVisualType: 3
+    material: {fileID: 2100000, guid: a64a1d802953dc1488720296fd25697c, type: 2}
 --- !u!4 &1599322854
 Transform:
   m_ObjectHideFlags: 0
