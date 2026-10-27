@@ -31,9 +31,9 @@ public class SpinAction : BaseAction
         //Set delegate parameter to onActionComplete that store ClearBusy function form UnitActionSystem
         //this.onActionComplete = onSpinComplete;
 
-        ActionStart(onActionComplete);
-
         totalSpinAmount = 0f;
+
+        ActionStart(onActionComplete);
     }
 
     public override List<GridPosition> GetValidActionGridPositionList()

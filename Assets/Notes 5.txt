@@ -31,3 +31,7 @@ handle those
 - Make a script so that the world UI always facing the camera
 - You can use built in unity sprite (instead of none) so that your image has more features to edit
 Most notably the image type where you can fill in the health bar based on how much health you have
+5.9 : 
+- Make another event for camera on BaseAction so that the camera know when each action start and finished
+- Change the transition speed on the cinemachineBrain on your main camera
+- Read the comments on the camera manager about explaining how the action camera works
