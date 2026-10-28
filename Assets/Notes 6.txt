@@ -1,0 +1,7 @@
+6.2 : 
+- Use generic function to make it possible to get each action using the baseActionArray on Unit class
+6.3 :
+- Use generic class on GridSystem to probably handle different types of grid. The generic class is
+TGridObject, learn how the Func interact with new to construct a new TGridObject
+- Check on how the GridSystem is created on the LevelGrid because we changed the constructor parameter
+to include Func
