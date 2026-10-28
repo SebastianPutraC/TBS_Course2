@@ -47,3 +47,11 @@ Every different action has different grid color
 - Another Script Execution Order change, Make sure the UnitManager is run before the Unit script so that
 Unit Manager is already there to subscribe OnUnitSpawn since the unit setup is also on Start()
 - Generally changing or using SEO is bad but just follow this for now
+5.12 :
+- EnemyAiAction is used to store each action possible grid position and priority for each action
+- Adjust the base action to accomodate this so that the AI may take the best action based on the
+given value/priority on its child classes
+- Method overload the getValidActionGridPositionList on the shoot action so that you can return 
+List of GridPosition available (to count target unit)
+- Get the list for EnemyAiAction and use it to evaluate each priority/value for each list member
+on the EnemyAI script
