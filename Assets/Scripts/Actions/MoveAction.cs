@@ -7,10 +7,13 @@ using UnityEngine;
 public class MoveAction : BaseAction
 {
     private Vector3 targetPosition;
-    [SerializeField] private Animator unitAnimator;
     [SerializeField] private int maxMoveDistance = 4;
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float rotateSpeed = 10f;
+
+    public event EventHandler OnStartMoving;
+    public event EventHandler OnStopMoving;
+
 
     protected override void Awake()
     {
@@ -35,14 +38,11 @@ public class MoveAction : BaseAction
         {
             //From Here?
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
-
-            unitAnimator.SetBool("IsWalking", true);
         }
         else
         {
-            unitAnimator.SetBool("IsWalking", false);
-            isActive = false;
-            onActionComplete();
+            OnStopMoving?.Invoke(this, EventArgs.Empty);
+            ActionComplete();
         }
         // Why move this?
         // Rotate the unit to face the movement direction
@@ -51,9 +51,11 @@ public class MoveAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        this.onActionComplete = onActionComplete;
         targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
-        isActive = true;
+
+        OnStartMoving?.Invoke(this, EventArgs.Empty);
+
+        ActionStart(onActionComplete);
     }
 
     public override List<GridPosition> GetValidActionGridPositionList()
@@ -96,5 +98,18 @@ public class MoveAction : BaseAction
     public override string GetActionName()
     {
         return "Move";
+    }
+
+    public override EnemyAIAction GetEnemyAIAction(GridPosition gridPosition)
+    {
+        int targetCountAtGridPosition = 
+            unit.GetShootAction().GetTargetCountAtPosition(gridPosition);
+
+        //Prioritize a grid position where this unit can shoot more enemies
+        return new EnemyAIAction
+        {
+            gridPosition = gridPosition,
+            actionValue = targetCountAtGridPosition * 10
+        };
     }
 }

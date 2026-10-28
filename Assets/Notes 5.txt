@@ -1,0 +1,57 @@
+5.2 :
+- The new enemy unit is using a prefab variant
+- Check on the Unit event when the turn is over, thats where each side regain their action points
+5.3 :
+- Shoot Action work similarly to move action, just need to find which grid in range to fire. There's some copying 
+code for checking the greed from the move action
+- Might recheck on how the circular shooting range compared to square for the radius of shooting action range
+- Check on how the state work on shoot action
+- fixed the onActionComplete for spinAction by renaming the parameter from onSpinComplete to onActionComplete like the 
+rest of the other function
+5.4 :
+- Added unitAnimator class that get events from each action on when to start the animation
+- Maybe relearn animation stuff with the exit time and transition time
+5.5 :
+- Bullet use Trail Renderer. It should be destroyed from the inspector instead of the code on BulletProjectile
+- You will also need a particle vfx when the bullet hit the target, make sure its also destroyed from the inspector
+- Make a new class on shootaction that inherit EventArgs for custom EventHandler parameter when shooting
+The event will carry data from ShootAction to UnitAnimator regarding the position of the target
+- Check on BulletProjectile for deleting the fast moving object. Check the distance object fired
+and check if the distance is overshooting from the previous distance after firing
+5.6 :
+- Health system when a unit dies, invoke an event so each unique unit can handle it differently
+5.7 :
+- There is a ragdoll gameobject on 3d object. Assign the duplicated Unit without any script or animator,
+then put the body part as the ragdoll menu required
+- Disable object that is not part of the body first (like weapon), then reenable it when the ragdoll is created
+- Make a script to match the ragdoll bones with the original unit bones.
+- Learn about the explosion force for each child of the ragdoll rigidbody and how the recursive function 
+handle those
+5.8 :
+- Make a script so that the world UI always facing the camera
+- You can use built in unity sprite (instead of none) so that your image has more features to edit
+Most notably the image type where you can fill in the health bar based on how much health you have
+5.9 : 
+- Make another event for camera on BaseAction so that the camera know when each action start and finished
+- Change the transition speed on the cinemachineBrain on your main camera
+- Read the comments on the camera manager about explaining how the action camera works
+5.10 :
+- Change how the gridvisual work, rather than through Update, the visual will update itself based on
+when selecting a new action and after unit is moving
+- Serializable for struct so it can be edited in the inspector
+- Change the grid color by checking on how the grid is visualize (using enum and struct). 
+Every different action has different grid color
+- Check on how the grid is visualizing the range of the shoot action
+5.11 : 
+- Unit manager has data for each unit on the map, whether its a friendly or an enemy
+- Another Script Execution Order change, Make sure the UnitManager is run before the Unit script so that
+Unit Manager is already there to subscribe OnUnitSpawn since the unit setup is also on Start()
+- Generally changing or using SEO is bad but just follow this for now
+5.12 :
+- EnemyAiAction is used to store each action possible grid position and priority for each action
+- Adjust the base action to accomodate this so that the AI may take the best action based on the
+given value/priority on its child classes
+- Method overload the getValidActionGridPositionList on the shoot action so that you can return 
+List of GridPosition available (to count target unit)
+- Get the list for EnemyAiAction and use it to evaluate each priority/value for each list member
+on the EnemyAI script
