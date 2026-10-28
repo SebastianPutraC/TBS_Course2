@@ -42,3 +42,8 @@ when selecting a new action and after unit is moving
 - Change the grid color by checking on how the grid is visualize (using enum and struct). 
 Every different action has different grid color
 - Check on how the grid is visualizing the range of the shoot action
+5.11 : 
+- Unit manager has data for each unit on the map, whether its a friendly or an enemy
+- Another Script Execution Order change, Make sure the UnitManager is run before the Unit script so that
+Unit Manager is already there to subscribe OnUnitSpawn since the unit setup is also on Start()
+- Generally changing or using SEO is bad but just follow this for now
