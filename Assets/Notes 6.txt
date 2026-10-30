@@ -16,3 +16,10 @@ every single class can be input there
 - Read the comment for the pathfinding script and the pseudocode text
 - Testing is calculating the cost for the pathfinding from 0,0 to the mouse grid. Since its not implemented 
 for movement purpose for now, this is used for testing
+6.7 :
+- Adjust the SEO again for LevelGrid(first) and Pathfinding so that it can process obstacles (that unit can't traverse)
+first before the other script
+- To make an obstacle, then that object has a layer that can be raycasted from the floor to tag that grid couldn't be 
+traversed
+- The raycast that shoots from the floor should be below the floor since the collider of the obstacle already hitting
+the floor, potentially undetected. in the code, the raycast is 5f below the floor and shoot upward to check for obstacle

@@ -13,6 +13,7 @@ public class Pathfinding : MonoBehaviour
     private const int MOVE_DIAGONAL_COST = 14;
 
     [SerializeField] private Transform gridDebugObjectPrefab;
+    [SerializeField] private LayerMask obstaclesLayerMask;
 
     private int width;
     private int height;
@@ -28,10 +29,36 @@ public class Pathfinding : MonoBehaviour
             return;
         }
         Instance = this;
+    }
 
-        gridSystem = new GridSystem<PathNode>(10, 10, 2f,
-            (GridSystem<PathNode> g, GridPosition gridPosition) => new PathNode(gridPosition));
+    public void Setup(int width, int height, float cellSize)
+    {
+        this.width = width;
+        this.height = height;
+        this.cellSize = cellSize;
+
+        gridSystem = new GridSystem<PathNode>(width, height, cellSize,
+    (GridSystem<PathNode> g, GridPosition gridPosition) => new PathNode(gridPosition));
         gridSystem.CreateDebugObjects(gridDebugObjectPrefab);
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int z = 0; z < height; z++)
+            {
+                GridPosition gridPosition = new GridPosition(x, z);
+                Vector3 worldPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
+
+                //Below the floor so it can detect the obstacle colldier
+                float raycastOffsetDistance = 5f;
+
+                //The vector3.up is *2 from the raycastOffsetDistance to make sure it hits the obstacle
+                if (Physics.Raycast(worldPosition + Vector3.down * raycastOffsetDistance,
+                    Vector3.up, raycastOffsetDistance * 2, obstaclesLayerMask))
+                {
+                    GetNode(x, z).SetIsWalkable(false);
+                }
+            }
+        }
     }
 
     public List<GridPosition> FindPath(GridPosition startGridPosition, GridPosition endGridPosition)
@@ -99,6 +126,12 @@ public class Pathfinding : MonoBehaviour
                 //Checks if the node is already being searched
                 if (closedList.Contains(neighbourNode))
                 {
+                    continue;
+                }
+                //Skip obstacle node
+                if (!neighbourNode.IsWalkable())
+                {
+                    closedList.Add(neighbourNode);
                     continue;
                 }
 

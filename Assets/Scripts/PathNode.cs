@@ -17,6 +17,8 @@ public class PathNode
     //reference of previous path node
     private PathNode cameFromPathNode;
 
+    private bool isWalkable = true;
+
     public PathNode(GridPosition gridPosition)
     {
         this.gridPosition = gridPosition;
@@ -77,4 +79,13 @@ public class PathNode
         return gridPosition;
     }
 
+    public bool IsWalkable()
+    {
+        return isWalkable;
+    }
+
+    public void SetIsWalkable(bool isWalkable)
+    {
+        this.isWalkable = isWalkable;
+    }
 }
