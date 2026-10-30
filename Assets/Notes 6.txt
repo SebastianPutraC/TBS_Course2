@@ -26,3 +26,11 @@ the floor, potentially undetected. in the code, the raycast is 5f below the floo
 6.8 : 
 - Make a indicator for debugging purpose for PathfindingGridDebugObject and the prefab object so you know which grid is walkable
 or not. Comment it if it's no longer needed
+6.9 :
+- https://community.gamedev.tv/t/caching-paths-for-smoother-move-times/235560 For optimized cached pathfinding
+- More stuff on move action + pathfinding, check if the target grid is an obstacle and check if the available grid can even be reached
+in the first place.
+- The pathfinding's FindPath script should also return the length of the path because the grid can be available through a wall 
+but the path can be past the maximum from the unit
+- Change the shootAction to implement raycast to check if the unit has a line of sight before be able to shoot another unit
+- Check how "out" in parameter work
