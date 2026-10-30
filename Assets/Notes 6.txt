@@ -5,3 +5,14 @@
 TGridObject, learn how the Func interact with new to construct a new TGridObject
 - Check on how the GridSystem is created on the LevelGrid because we changed the constructor parameter
 to include Func
+6.5 : 
+- Find out how the H cost work in A* pathfinding
+- It seems like the previous generics is so that GridSystem can accept PathNode
+- To check for pathfinding debug, you can just comment the debug on LevelGrid and the update for GridDebugObject
+and make a new grid debug object for pathfinding
+- Make it that the createDebugObject for GridSystem and GridDebugObject accept c# generic "object" class so
+every single class can be input there
+6.6 : 
+- Read the comment for the pathfinding script and the pseudocode text
+- Testing is calculating the cost for the pathfinding from 0,0 to the mouse grid. Since its not implemented 
+for movement purpose for now, this is used for testing
