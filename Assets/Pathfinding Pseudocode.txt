@@ -1,0 +1,18 @@
+A* Pathfinding Algorithm Pseudocode
+openList // the set of nodes to be evaluated
+closedList // the set of nodes already evaluated
+Add the start node to openList
+
+Loop:
+  - currentNode = node in openList with the lowest fCost
+  - Remove currentNode from openList
+  - Add currentNode to closedList
+  - If current is the target node, reconstruct path back from destination using cameFrom references 
+    and return the path.
+  - For each neighbour of currentNode:
+    - If neighbourNode is not traversable or neighbourNode is in closedList, skip neighbourNode
+    - If new path to neighbourNode is shorter (i.e. tentative gCost < neighbour’s current gCost) 
+    or neighbourNode is not in openList:
+       - Set gCost, hCost, and fCost of neighbour
+       - Set cameFrom of neighbour to currentNode
+       - If neighbour is not in openList, add neighbour to openList

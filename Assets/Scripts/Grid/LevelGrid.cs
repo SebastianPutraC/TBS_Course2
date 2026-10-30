@@ -9,7 +9,12 @@ public class LevelGrid : MonoBehaviour
     public event EventHandler OnAnyUnitMovedGridPosition;
 
     [SerializeField] private Transform gridDebugObjectPrefab;
-    private GridSystem gridSystem;
+    private GridSystem<GridObject> gridSystem;
+
+    [SerializeField] private int width;
+    [SerializeField] private int height;
+    [SerializeField] private float cellSize;
+
     private void Awake()
     {
         if (Instance != null)
@@ -20,8 +25,16 @@ public class LevelGrid : MonoBehaviour
         }
         Instance = this;
 
-        gridSystem = new GridSystem(10, 10, 2f);
-        gridSystem.CreateDebugObjects(gridDebugObjectPrefab);
+        gridSystem = new GridSystem<GridObject>(10, 10, 2f, //Same parameter as before
+               (GridSystem<GridObject> g, GridPosition gridPosition) //Func parameter
+               => new GridObject(g, gridPosition));
+
+        //gridSystem.CreateDebugObjects(gridDebugObjectPrefab);
+    }
+
+    private void Start()
+    {
+        Pathfinding.Instance.Setup(width, height, cellSize);
     }
 
     public void AddUnitAtGridPosition(GridPosition gridPosition, Unit unit)

@@ -26,6 +26,8 @@ public class ShootAction : BaseAction
 
     private bool canShootBullet;
 
+    [SerializeField] private LayerMask obstacleLayerMask;
+
     private void Update()
     {
         if (!isActive)
@@ -135,6 +137,20 @@ public class ShootAction : BaseAction
                     //Unit is on the same side, skip it
                     continue;
                 }
+
+                //Raycast that tries to get to targeted unit and the target should be skipped if it hits an obstacle
+                Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPosition(unitGridPosition);
+                Vector3 shootDir = (targetUnit.GetWorldPosition() - unitWorldPosition).normalized;
+                float unitShoulderHeight = 1.7f;
+                if (Physics.Raycast(unitWorldPosition + Vector3.up * unitShoulderHeight,
+                    shootDir,
+                    Vector3.Distance(unitWorldPosition, targetUnit.GetWorldPosition()),
+                    obstacleLayerMask))
+                {
+                    //Hitting an obstacle instead of unit in line of sight
+                    continue;
+                }
+                    
 
                 validGridPositions.Add(testGridPosition);
             }

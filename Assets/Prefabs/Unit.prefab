@@ -589,6 +589,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5f83d2211e70f409f6db32cbe1c75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootAction
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &8064362146971833011
 MonoBehaviour:
   m_ObjectHideFlags: 0

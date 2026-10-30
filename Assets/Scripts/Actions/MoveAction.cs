@@ -6,7 +6,12 @@ using UnityEngine;
 
 public class MoveAction : BaseAction
 {
-    private Vector3 targetPosition;
+    private List<Vector3> positionList;
+    private int currentPositionIndex;
+
+    //Previously used for getting the targetPosition, now changed to List<Vector3> positionList
+    //private Vector3 targetPosition;
+
     [SerializeField] private int maxMoveDistance = 4;
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float rotateSpeed = 10f;
@@ -15,13 +20,13 @@ public class MoveAction : BaseAction
     public event EventHandler OnStopMoving;
 
 
-    protected override void Awake()
+    /*protected override void Awake()
     {
         base.Awake();
 
         //Set unit's starting target as its starting position to stop it from moving to 0,0,0
         targetPosition = transform.position;
-    }
+    }*/
 
     private void Update()
     {
@@ -29,8 +34,15 @@ public class MoveAction : BaseAction
         {
             return;
         }
+
+        Vector3 targetPosition = positionList[currentPositionIndex];
+
         // Why move this?
         Vector3 moveDirection = (targetPosition - transform.position).normalized;
+
+        // Rotate the unit to face the movement direction
+        transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
+
         float stoppingDistance = 0.1f;
 
         //Stops the unit from moving if it is within the stopping distance of the target position
@@ -41,17 +53,32 @@ public class MoveAction : BaseAction
         }
         else
         {
-            OnStopMoving?.Invoke(this, EventArgs.Empty);
-            ActionComplete();
+            currentPositionIndex++;
+
+            //At the target / end of the list
+            if (currentPositionIndex >= positionList.Count)
+            {
+                OnStopMoving?.Invoke(this, EventArgs.Empty);
+                ActionComplete();
+            }
         }
-        // Why move this?
-        // Rotate the unit to face the movement direction
-        transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
     }
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
+        List<GridPosition> pathGridPositionList = 
+            Pathfinding.Instance.FindPath(unit.GetGridPosition(), gridPosition, out int pathLength);
+
+        currentPositionIndex = 0;
+
+        positionList = new List<Vector3>();
+
+        foreach(GridPosition pathGridPosition in pathGridPositionList)
+        {
+            positionList.Add(LevelGrid.Instance.GetWorldPosition(pathGridPosition));
+        }
+
+        //targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
 
         OnStartMoving?.Invoke(this, EventArgs.Empty);
 
@@ -88,6 +115,26 @@ public class MoveAction : BaseAction
                     continue;
                 }
 
+                if (!Pathfinding.Instance.IsWalkableGridPosition(testGridPosition))
+                {   //From the pathfinding, check if the grid has an obstacle or not
+                    continue;
+                }
+
+                if (!Pathfinding.Instance.HasPath(unitGridPosition, testGridPosition))
+                {
+                    //Available grid is blocked by obstacles, skip it
+                    continue;
+                }
+                int pathfindingDistanceMultipler = 10;
+
+                if (Pathfinding.Instance.GetPathLength(unitGridPosition, testGridPosition) 
+                    > maxMoveDistance * pathfindingDistanceMultipler)
+                {
+                    //Path length is too long after calculating by maxMoveDistance
+                    continue;
+                }
+
+
                 validGridPositions.Add(testGridPosition);
             }
         }
@@ -103,7 +150,7 @@ public class MoveAction : BaseAction
     public override EnemyAIAction GetEnemyAIAction(GridPosition gridPosition)
     {
         int targetCountAtGridPosition = 
-            unit.GetShootAction().GetTargetCountAtPosition(gridPosition);
+            unit.GetAction<ShootAction>().GetTargetCountAtPosition(gridPosition);
 
         //Prioritize a grid position where this unit can shoot more enemies
         return new EnemyAIAction

@@ -1,19 +1,25 @@
 using UnityEngine;
+using System;
 
-public class GridSystem 
+public class GridSystem <TGridObject>
 {
     private int width;
     private int height;
     private float cellsize;
-    private GridObject[,] gridObjectsArray; //2D array to hold the grid objects
+    private TGridObject[,] gridObjectsArray; //2D array to hold the grid objects
 
-    public GridSystem(int width, int height, float cellsize)
+    public GridSystem(int width, int height, float cellsize, 
+        Func<
+            GridSystem<TGridObject>, // First Input
+            GridPosition, //Second Input
+            TGridObject> //Return Value
+            createGridObject) // Function name
     {
         this.width = width;
         this.height = height;
         this.cellsize = cellsize;
 
-        gridObjectsArray = new GridObject[width, height];
+        gridObjectsArray = new TGridObject[width, height];
         for (int x = 0; x < width; x++)
         {
             for (int z = 0; z < height; z++)
@@ -23,9 +29,11 @@ public class GridSystem
                 /*Debug.DrawLine(GetWorldPosition(x, z), GetWorldPosition(x, z)
                     + Vector3.right * .2f, Color.white, 100f);*/
 
+
                 GridPosition gridPosition = new GridPosition(x, z);
-                gridObjectsArray[x, z] = new GridObject(this, gridPosition);
-                //put each new grid object into the array
+                //This is where the Func function is used
+                gridObjectsArray[x, z] = createGridObject(this, gridPosition); 
+                //Put each new grid object into the array
             }
         }
     }
@@ -62,7 +70,7 @@ public class GridSystem
             }
         }
     }
-    public GridObject GetGridObject(GridPosition gridPosition)
+    public TGridObject GetGridObject(GridPosition gridPosition)
     {
         return gridObjectsArray[gridPosition.x, gridPosition.z];
     }
