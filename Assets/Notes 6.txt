@@ -23,3 +23,6 @@ first before the other script
 traversed
 - The raycast that shoots from the floor should be below the floor since the collider of the obstacle already hitting
 the floor, potentially undetected. in the code, the raycast is 5f below the floor and shoot upward to check for obstacle
+6.8 : 
+- Make a indicator for debugging purpose for PathfindingGridDebugObject and the prefab object so you know which grid is walkable
+or not. Comment it if it's no longer needed
