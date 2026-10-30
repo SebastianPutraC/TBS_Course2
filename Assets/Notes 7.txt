@@ -1,0 +1,8 @@
+7.3 : 
+- The grenade check for valid grid is using the shoot action minus the checking for friendly unit,
+whether there's any enemy unit in that grid (free throw), and visible unit (raycast)
+- You can use Physics.OverlapSphere to check for any surrounding area that is part of the grenade 
+7.4 :
+- BulletHitVFX can be used to make the grenadeVFX
+- Grenade can be launched through an arc using AnimationCurve on GrenadeProjectile. Shape the curve 
+to be an arc from the top and falling at the end
