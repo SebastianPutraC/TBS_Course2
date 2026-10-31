@@ -1,3 +1,4 @@
+#define USE_NEW_INPUT_SYSTEM
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -81,7 +82,7 @@ public class UnitActionSystem : MonoBehaviour
     }
     private void HandleSelectedAction()
     {
-        if (InputManager.Instance.IsMouseButtonDown())
+        if (InputManager.Instance.IsMouseButtonDownThisFrame())
         {
             GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
 

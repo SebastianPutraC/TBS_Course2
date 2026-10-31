@@ -23,3 +23,6 @@ if you want to interact with other things
 7.10 :
 - On the new Input Manager, the WASD to control the camera is supposed to be inputMoveDir.z instead of y 
 but we will translate it back on camera controller
+7.11 : 
+- Create a new input action and use the generate C# class option. Use it be constructed on the InputManager
+class and enable it on awake
