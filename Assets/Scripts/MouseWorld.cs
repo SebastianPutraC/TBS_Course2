@@ -22,7 +22,7 @@ public class MouseWorld : MonoBehaviour
     public static Vector3 GetPosition()
     {
         //Raycast detect all colliders in the scene and return true if it hits something
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.GetMouseSecreenPosition());
         Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, instance.mousePlaneLayerMask);
         return raycastHit.point;
     }

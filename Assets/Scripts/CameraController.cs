@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class CameraController : MonoBehaviour
 {
@@ -35,25 +32,9 @@ public class CameraController : MonoBehaviour
     }
     private void HandleMovement()
     {
-        Vector3 inputMoveDir = new Vector3(0, 0, 0);
-        if (Keyboard.current.wKey.ReadValue() > 0) //Hold input pretty much
-        {
-            inputMoveDir.z = +1f;
-        }
-        if (Keyboard.current.sKey.ReadValue() > 0)
-        {
-            inputMoveDir.z = -1f;
-        }
-        if (Keyboard.current.aKey.ReadValue() > 0)
-        {
-            inputMoveDir.x = -1f;
-        }
-        if (Keyboard.current.dKey.ReadValue() > 0)
-        {
-            inputMoveDir.x = +1f;
-        }
-
-        Vector3 moveVector = transform.forward * inputMoveDir.z + transform.right * inputMoveDir.x;
+        Vector2 inputMoveDir = InputManager.Instance.GetCameraMoveVector();
+            
+        Vector3 moveVector = transform.forward * inputMoveDir.y + transform.right * inputMoveDir.x;
         transform.position += moveVector * moveSpeed * Time.deltaTime;
     }
 
@@ -61,20 +42,13 @@ public class CameraController : MonoBehaviour
     {
         Vector3 rotationVector = new Vector3(0, 0, 0);
 
-        if (Keyboard.current.qKey.ReadValue() > 0)
-        {
-            rotationVector.y = +1f;
-        }
-        if (Keyboard.current.eKey.ReadValue() > 0)
-        {
-            rotationVector.y = -1f;
-        }
+        rotationVector.y = InputManager.Instance.GetCameraRotateAmount();
 
         transform.eulerAngles += rotationVector * rotationSpeed * Time.deltaTime;
     }
     private void HandleZoom()
     {
-        float scroll = Mouse.current.scroll.ReadValue().y; // Either -1 (scroll down) or +1 (scroll up), and 0 for not doing anything
+        float scroll = InputManager.Instance.GetCameraZoomAmount(); // Either -1 (scroll down) or +1 (scroll up), and 0 for not doing anything
         targetFollowY -= scroll * zoomAmount; //-= because we want to zoom in when scrolling up, and out when scrolling down
 
         targetFollowY = Mathf.Clamp( //Clamp because we don't want the camera to go too high or too low

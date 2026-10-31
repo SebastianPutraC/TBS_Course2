@@ -20,3 +20,6 @@ another unit
 7.8 :
 - You can use the GetValidActionGridPositionList from the other action to check the surrounding 
 if you want to interact with other things
+7.10 :
+- On the new Input Manager, the WASD to control the camera is supposed to be inputMoveDir.z instead of y 
+but we will translate it back on camera controller
