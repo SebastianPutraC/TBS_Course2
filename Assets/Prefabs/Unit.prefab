@@ -493,6 +493,7 @@ GameObject:
   - component: {fileID: 1501395713313070542}
   - component: {fileID: 8486659126011136271}
   - component: {fileID: 5172674709275648487}
+  - component: {fileID: 2408584836731547042}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -663,6 +664,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388bea006f7cce0498ddb9caba03d424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordAction
+--- !u!114 &2408584836731547042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5764248162616664518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df31a8f44a3a57498350b25a4668aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractAction
 --- !u!1 &5786957913278939410
 GameObject:
   m_ObjectHideFlags: 0

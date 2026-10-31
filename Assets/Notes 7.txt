@@ -17,3 +17,6 @@ if you can swing your sword to something
 - Copy the enum and switch state system from the shoot action for timing on when the unit is hitting
 another unit
 - Based on the event given to the UnitAnimator, adjust when to equip the sword and the rifle
+7.8 :
+- You can use the GetValidActionGridPositionList from the other action to check the surrounding 
+if you want to interact with other things
