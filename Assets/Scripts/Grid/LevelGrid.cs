@@ -25,7 +25,7 @@ public class LevelGrid : MonoBehaviour
         }
         Instance = this;
 
-        gridSystem = new GridSystem<GridObject>(10, 10, 2f, //Same parameter as before
+        gridSystem = new GridSystem<GridObject>(width, height, cellSize, //Same parameter as before
                (GridSystem<GridObject> g, GridPosition gridPosition) //Func parameter
                => new GridObject(g, gridPosition));
 
