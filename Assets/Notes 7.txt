@@ -6,3 +6,8 @@ whether there's any enemy unit in that grid (free throw), and visible unit (rayc
 - BulletHitVFX can be used to make the grenadeVFX
 - Grenade can be launched through an arc using AnimationCurve on GrenadeProjectile. Shape the curve 
 to be an arc from the top and falling at the end
+7.5 : 
+- When adding destructible crate, you should add another viable collider check when using 
+a grenade so the crate can be destroyed
+- Also add the grid from being non walkable to walkable after the crate was destroyed.
+In the video it use the PathfindingUpdater as a middleman to listen when the crate was destroyed
