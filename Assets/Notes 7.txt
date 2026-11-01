@@ -1,0 +1,28 @@
+7.3 : 
+- The grenade check for valid grid is using the shoot action minus the checking for friendly unit,
+whether there's any enemy unit in that grid (free throw), and visible unit (raycast)
+- You can use Physics.OverlapSphere to check for any surrounding area that is part of the grenade 
+7.4 :
+- BulletHitVFX can be used to make the grenadeVFX
+- Grenade can be launched through an arc using AnimationCurve on GrenadeProjectile. Shape the curve 
+to be an arc from the top and falling at the end
+7.5 : 
+- When adding destructible crate, you should add another viable collider check when using 
+a grenade so the crate can be destroyed
+- Also add the grid from being non walkable to walkable after the crate was destroyed.
+In the video it use the PathfindingUpdater as a middleman to listen when the crate was destroyed
+7.7 :
+- You can use the GetValidActionGridPositionList from the other action to check the surrounding 
+if you can swing your sword to something
+- Copy the enum and switch state system from the shoot action for timing on when the unit is hitting
+another unit
+- Based on the event given to the UnitAnimator, adjust when to equip the sword and the rifle
+7.8 :
+- You can use the GetValidActionGridPositionList from the other action to check the surrounding 
+if you want to interact with other things
+7.10 :
+- On the new Input Manager, the WASD to control the camera is supposed to be inputMoveDir.z instead of y 
+but we will translate it back on camera controller
+7.11 : 
+- Create a new input action and use the generate C# class option. Use it be constructed on the InputManager
+class and enable it on awake

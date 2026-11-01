@@ -25,7 +25,7 @@ public class LevelGrid : MonoBehaviour
         }
         Instance = this;
 
-        gridSystem = new GridSystem<GridObject>(10, 10, 2f, //Same parameter as before
+        gridSystem = new GridSystem<GridObject>(width, height, cellSize, //Same parameter as before
                (GridSystem<GridObject> g, GridPosition gridPosition) //Func parameter
                => new GridObject(g, gridPosition));
 
@@ -90,5 +90,16 @@ public class LevelGrid : MonoBehaviour
     public int GetHeight()
     {
         return gridSystem.GetHeight();
+    }
+
+    public IInteractable GetInteractableAtGridPosition(GridPosition gridPosition)
+    {
+        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+        return gridObject.GetInteractable();
+    }
+    public void SetInteractableAtGridPosition(GridPosition gridPosition, IInteractable door)
+    {
+        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+        gridObject.SetInteractable(door);
     }
 }
